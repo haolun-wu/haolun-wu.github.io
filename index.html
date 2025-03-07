@@ -294,14 +294,19 @@
             </div>
         </div>
 
-        <!-- Latest Twitter Post -->
-        <div id="latest-tweet" class="mt-3 p-0">
-            <h1 class="title mb-4 p-0">Latest Tweet</h1>
-            <div class="tweet-container">
-                <p>Loading latest tweet...</p>
-            </div>
+        <!-- Selected Twitter Post -->
+        <div style="width:300px; margin:0 auto;">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">🚀 New Research Alert: Logits are All We Need to Adapt Closed Models<br>🔒Many
+                    commercial Large Language Models (LLMs), e.g., GPT-4, are closed-source, limiting developers to
+                    steer content generation.<br><br>🤔Can we adapt closed-source LLMs when fine-tuning or accessing
+                    their internal… <a href="https://t.co/fdwl6hmlBd">pic.twitter.com/fdwl6hmlBd</a></p>&mdash; Haolun
+                Wu (@Haolun_Wu0203) <a
+                    href="https://twitter.com/Haolun_Wu0203/status/1896777183999537226?ref_src=twsrc%5Etfw">March 4,
+                    2025</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-
 
         <!-- News -->
         <div class="news mt-3 p-0">
@@ -767,33 +772,6 @@
             ga('send', 'pageview');
         </script>
 
-        <!-- JavaScript for fetching and displaying the latest tweet -->
-        <script>
-            const bearerToken = 'AAAAAAAAAAAAAAAAAAAAAPfqzgEAAAAAYqKTxOxmVjgCggSJR2pQ%2BU1fRzI%3DL7AF5pfZeeVRW9Jo3uSK1VZFw73kiV2VPmYZ0WYmN4fqKzqheO'; // Replace with your actual Bearer Token
-            const userId = '1502360315786317831'; // Replace with your Twitter user ID
-
-            async function fetchLatestTweet() {
-                const url = `https://api.twitter.com/2/users/${userId}/tweets?max_results=1&tweet.fields=created_at`;
-                const response = await fetch(url, {
-                    headers: {
-                        'Authorization': `Bearer ${bearerToken}`
-                    }
-                });
-                const data = await response.json();
-                return data.data[0];
-            }
-
-            fetchLatestTweet().then(tweet => {
-                const tweetContainer = document.querySelector('#latest-tweet .tweet-container');
-                tweetContainer.innerHTML = `
-            <p>${tweet.text}</p>
-            <small>Posted on ${new Date(tweet.created_at).toLocaleDateString()}</small>
-        `;
-            }).catch(error => {
-                console.error('Error fetching tweet:', error);
-                document.querySelector('#latest-tweet .tweet-container').innerHTML = '<p>Unable to load latest tweet.</p>';
-            });
-        </script>
 </body>
 
 </html>
